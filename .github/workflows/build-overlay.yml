@@ -1,0 +1,30 @@
+name: Build overlay APK
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v4
+      - uses: pnpm/setup@v2
+        with:
+          runtime: node@^26.12.1
+          cache: true
+          install: false
+      - run: |
+          sdkmanager "build-tools;36.1.0"
+          echo "${ANDROID_SDK_ROOT:-$ANDROID_HOME}/build-tools/36.1.0" >> "$GITHUB_PATH"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build:packages
+      - run: pnpm -F @proj-airi/stage-pocket run build
+      - run: pnpm -F @proj-airi/stage-pocket exec cap sync android
+      - working-directory: apps/stage-pocket/android
+        run: ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AIRI-overlay-debug-apk
+          path: apps/stage-pocket/android/app/build/outputs/apk/debug/*.apk
