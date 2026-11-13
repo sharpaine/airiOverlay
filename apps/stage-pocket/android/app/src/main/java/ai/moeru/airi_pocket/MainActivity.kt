@@ -11,6 +11,7 @@ import com.getcapacitor.BridgeWebViewClient
 import com.getcapacitor.Logger
 import org.json.JSONObject
 
+import ai.moeru.airi_pocket.overlay.AiriOverlayPlugin
 import ai.moeru.airi_pocket.websocket.HostWebSocketBridge
 import ai.moeru.airi_pocket.websocket.HostWebSocketEvent
 import ai.moeru.airi_pocket.websocket.HostWebSocketSession
@@ -29,6 +30,7 @@ class MainActivity : BridgeActivity() {
     override fun load() {
         registerPlugin(MicrophonePermissionPlugin::class.java)
         registerPlugin(WebAuthenticationPlugin::class.java)
+        registerPlugin(AiriOverlayPlugin::class.java)
         super.load()
 
         val bridge = bridge ?: return

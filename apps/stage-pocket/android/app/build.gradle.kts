@@ -12,6 +12,7 @@ val junitVersion: String by rootProject.extra
 val androidxJunitVersion: String by rootProject.extra
 val androidxEspressoCoreVersion: String by rootProject.extra
 val okhttpVersion: String by rootProject.extra
+val androidxWebkitVersion: String by rootProject.extra
 val orgJsonVersion: String by rootProject.extra
 
 val androidMinSdk = minSdkVersion
@@ -78,6 +79,7 @@ dependencies {
     implementation("androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion")
     implementation("androidx.core:core-splashscreen:$coreSplashScreenVersion")
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
+    implementation("androidx.webkit:webkit:$androidxWebkitVersion")
     implementation(project(":capacitor-android"))
     testImplementation("junit:junit:$junitVersion")
     testImplementation("org.json:json:$orgJsonVersion")

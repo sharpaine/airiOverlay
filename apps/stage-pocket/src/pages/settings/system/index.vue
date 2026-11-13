@@ -27,6 +27,12 @@ const settings = computed(() => [
     to: '/settings/system/permissions',
   },
   {
+    title: 'Floating AIRI',
+    description: 'A bubble you can tap over any app to ask about or circle what is on screen',
+    icon: 'i-solar:chat-round-dots-bold-duotone',
+    to: '/settings/system/overlay',
+  },
+  {
     title: t('settings.pages.system.developer.title'),
     description: t('settings.pages.system.developer.description'),
     icon: 'i-solar:code-bold-duotone',
