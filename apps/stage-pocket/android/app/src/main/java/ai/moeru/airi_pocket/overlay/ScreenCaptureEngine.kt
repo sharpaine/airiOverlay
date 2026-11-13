@@ -42,6 +42,8 @@ class ScreenCaptureEngine(
     fun start(resultCode: Int, data: Intent) {
         val manager = context.getSystemService(MediaProjectionManager::class.java)
         val projection = manager.getMediaProjection(resultCode, data)
+           val projection = manager.getMediaProjection(resultCode, data)
+       ?: throw IllegalStateException("MediaProjection unavailable")
         this.projection = projection
 
         // NOTICE: Android 14+ requires a registered callback before createVirtualDisplay.
